@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #0d0d0d; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #f97316; }
+
+/* ── LED border utility ─────────────────────────────────────── */
+@layer components {
+  .led-border {
+    position: relative;
+  }
+  .led-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #f97316 0%, #f9731660 40%, #f9731620 70%, #f9731650 100%);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .led-border-full {
+    border: 1px solid #f97316;
+    box-shadow: 0 0 8px #f9731440, inset 0 0 8px #f9731408;
+  }
+
+  .led-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #f97316 20%, #f97316 80%, transparent 100%);
+    box-shadow: 0 0 6px #f97316;
+  }
+
+  .led-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f97316;
+    box-shadow: 0 0 6px #f97316, 0 0 12px #f9731660;
+  }
+
+  .led-dot-sm {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #f97316;
+    box-shadow: 0 0 4px #f97316;
+  }
+
+  .alarm-card {
+    background: #111111;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .alarm-card:hover {
+    border-color: #f9731440;
+    box-shadow: 0 0 20px #f9731410;
+  }
+  .alarm-card:hover .card-led-top {
+    box-shadow: 0 0 10px #f97316, 0 0 30px #f9731640;
+  }
+
+  .card-led-top {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #f97316, transparent);
+    box-shadow: 0 0 6px #f97316, 0 0 20px #f9731630;
+    transition: box-shadow 0.3s;
+    border-radius: 12px 12px 0 0;
+  }
+}
+
+/* ── Selection ──────────────────────────────────────────────── */
+::selection {
+  background: #f9731430;
+  color: #f0ece4;
+}
